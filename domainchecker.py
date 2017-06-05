@@ -6,10 +6,9 @@
 maiserver = "smtp.gmail.com"
 maillogin = "someuser@gmail.com"
 mailpass = "strongpass"
-mailto = "mailto@user.com"
+mailto = ['user1@gmail.com', 'user2@gmail.com']
 domains = ['ya.ru','gmail.com']
 alertdays = 32 # how many days before alerting
-
 
 # Import modules
 import whois
@@ -20,20 +19,21 @@ import smtplib
 
 # Email function
 def sendEMail(text, maiserver, maillogin, mailpass, mailto, mailtheme):
-    server = smtplib.SMTP(maiserver, 587)
-    server.set_debuglevel(1)
-    server.ehlo()
-    server.starttls()
-    server.login(maillogin, mailpass)
-    message = "\r\n".join([ \
-        "From: "+maillogin, \
-        "To: "+mailto, \
-        "Subject: "+mailtheme, \
-        "", \
-        "{}".format(text) \
-        ])
-    server.sendmail(maillogin, mailto, message)
-    server.quit()
+	for addr in mailto:
+		server = smtplib.SMTP(maiserver, 587)
+		server.set_debuglevel(1)
+		server.ehlo()
+		server.starttls()
+		server.login(maillogin, mailpass)
+		message = "\r\n".join([ \
+			"From: "+maillogin, \
+			"To: "+addr, \
+			"Subject: "+mailtheme, \
+			"", \
+			"{}".format(text) \
+			])
+		server.sendmail(maillogin, mailto, message)
+		server.quit()
 
 
 # Domain check function
@@ -72,3 +72,5 @@ if __name__ == '__main__':
 					pass
 else:
 	pass
+
+
