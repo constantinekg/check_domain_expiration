@@ -4,7 +4,7 @@ Created by Constantine @ 2017 vi127001 [at] gmail.com
 How to install:
 
 sudo apt install python3-dateutil python3-pip && sudo -H pip3 install python-whois
-git clone https://github.com/waxman435/check_domain_expiration
+git clone https://github.com/constantinekg/check_domain_expiration
 
 How to modify:
 Open domainchecker.py in text editor and make changes in global variables section.
